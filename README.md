@@ -10,7 +10,7 @@ Flask Endpoint:
 The /1/queries/count/<date_prefix> endpoint is exposed to get the count of unique queries based on the provided date prefix. It calls the count_queries function and returns a JSON response containing the count.
 
 Regular Expressions:
-Regular expressions are powerful tools for pattern matching in strings. They are used here to validate and match date prefixes.
+Regular expressions are powerful tools for pattern matching in strings. They are used to validate and match date prefixes.
 
 The other alternative method to load and read the large tsv file is by using a Pandas dataframe.
 
