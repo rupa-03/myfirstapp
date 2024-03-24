@@ -17,6 +17,7 @@ def parse_log_file():
 year_regex = re.compile(r'^\d{4}$')
 month_regex = re.compile(r'^\d{4}-\d{2}$')
 day_regex = re.compile(r'^\d{4}-\d{2}-\d{2}$')
+particular_time_regex = re.compile(r'^\d{4}-\d{2}-\d{2} [0-9]{2}:?[0-9]{0,2}:?[0-9]{0,2}$')
 
 def count_queries(date_prefix):
     log_data = parse_log_file()
@@ -34,11 +35,11 @@ def count_queries(date_prefix):
         for timestamp in log_data:
             if timestamp.startswith(date_prefix):
                 final.update(log_data[timestamp])
-    else:
+    elif particular_time_regex.match(date_prefix):
         for timestamp in log_data:
-            if timestamp[:len(date_prefix)] == date_prefix:  # Check if the prefix matches the timestamp
+            if timestamp.startswith(date_prefix):
                 final.update(log_data[timestamp])
-                
+   
     return len(final)
 
 @app.route('/1/queries/count/<date_prefix>')
